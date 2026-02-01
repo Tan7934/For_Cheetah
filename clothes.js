@@ -18,7 +18,7 @@ function createHeart() {
 }
 
 // 2. 准备情书内容
-var loveLetter = "你好，新年快乐，祝你妈妈生日快乐，希望她福如东海，寿比南山，心想事成，身体健康以及快快乐乐一辈子(this might be the most random thing u see today)猫猫照片给你母亲:O!!";
+var loveLetter = "Snoopy is one of the central characters in the comic strip Peanuts by American cartoonist Charles M. Schulz. He also appears in all of the Peanuts films and television specials. Debuting in the strip on October 4, 1950, the original drawings of Snoopy were inspired by Spike, one of Schulz's childhood dogs。作为你的朋友想问你在2月14号可以和我出去吗，我想看人家打鼓，但是如果想拒绝我的话，你就不用回复我了，就是就是seen 我就好了，以上就是我想说的。Snoopy is a loyal, imaginative, and good-natured beagle who is prone to imagining fantasy lives, including being an author,[8] a college student known as （Joe Cool）, an attorney, and a World War I flying ace.[9] He is perhaps best known in this last persona, wearing an aviator's helmet and goggles and a scarf while carrying a swagger stick (like a stereotypical British Army officer of World War I and II).Snoopy can be selfish, gluttonous, and lazy at times, and occasionally mocks his owner, Charlie Brown. But on the whole, he shows great love, care, and loyalty for his owner (even though he cannot even remember his name and always refers to him as （the round-headed kid). In the 1990s comic strips, he is obsessed with cookies, particularly the chocolate-chip variety. This, and other instances in which he indulges in large chocolate-based meals and snacks, indicate that chocolate is not poisonous to Snoopy, the way it is for real dogs.";
 
 // 3. 设置打字速度
 var typingSpeed = 100;
@@ -45,8 +45,6 @@ function typeWriter(text, i, element, speed) {
 // 5. 确保页面加载完后再运行
 window.onload = function () {
     var btn = document.getElementById('start-btn');
-    var audio = new Audio('happy-bday.mp3'); 
-    audio.loop = true; 
 
     if (btn) {
         btn.onclick = function () {
