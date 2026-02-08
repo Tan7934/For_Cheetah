@@ -32,7 +32,7 @@ function moveButton() {
 }
 
 // 3. 情书内容与设置
-var loveLetter = "halo,我是史努比，可以问你在2月14号可以和我出去吗？我想看别人打鼓但没人陪我，但如果你有事情或者想拒绝我也可以的，seen我就好了，";
+var loveLetter = "你好,很抱歉用这种方法，但是请问你在2月14号可以和我出去吗？";
 var typingSpeed = 100;
 
 // 4. 打字机函数
