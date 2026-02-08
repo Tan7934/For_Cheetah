@@ -33,7 +33,7 @@ function moveButton() {
 
 // 3. 情书内容与设置
 var loveLetter = "你好,很抱歉用这种方法，但是请问你在2月14号可以和我出去吗？";
-var typingSpeed = 100;
+var typingSpeed = 150;
 
 // 4. 打字机函数
 function typeWriter(text, i, element, speed) {
