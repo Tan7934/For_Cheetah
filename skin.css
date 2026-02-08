@@ -72,3 +72,14 @@ body {
 }
 
 }
+
+#no-btn {
+    padding: 10px 20px;
+    background-color: #ccc;
+    color: #666;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s ease; /* 让它跑起来有丝滑感 */
+    z-index: 999;
+}

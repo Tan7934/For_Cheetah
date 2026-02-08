@@ -1,7 +1,7 @@
 /*jslint browser: true, devel: true */
 "use strict";
 
-// 1. 产生爱心的逻辑 (放在最前面)
+// 1. 产生爱心的逻辑
 function createHeart() {
     var heart = document.createElement('div');
     heart.innerHTML = '💖'; 
@@ -17,10 +17,22 @@ function createHeart() {
     }, duration * 1000);
 }
 
-// 2. 准备情书内容
-var loveLetter = "Snoopy is one of the central characters in the comic strip Peanuts by American cartoonist Charles M. Schulz. He also appears in all of the Peanuts films and television specials. Debuting in the strip on October 4, 1950, the original drawings of Snoopy were inspired by Spike, one of Schulz's childhood dogs。作为你的朋友想问你在2月14号可以和我出去吗，我想看人家打鼓，但是如果想拒绝我的话，你就不用回复我了，就是就是seen 我就好了，以上就是我想说的。Snoopy is a loyal, imaginative, and good-natured beagle who is prone to imagining fantasy lives, including being an author,[8] a college student known as （Joe Cool）, an attorney, and a World War I flying ace.[9] He is perhaps best known in this last persona, wearing an aviator's helmet and goggles and a scarf while carrying a swagger stick (like a stereotypical British Army officer of World War I and II).Snoopy can be selfish, gluttonous, and lazy at times, and occasionally mocks his owner, Charlie Brown. But on the whole, he shows great love, care, and loyalty for his owner (even though he cannot even remember his name and always refers to him as （the round-headed kid). In the 1990s comic strips, he is obsessed with cookies, particularly the chocolate-chip variety. This, and other instances in which he indulges in large chocolate-based meals and snacks, indicate that chocolate is not poisonous to Snoopy, the way it is for real dogs.";
+// 2. 拒绝按钮“逃跑”的逻辑
+function moveButton() {
+    var noBtn = document.getElementById('no-btn');
+    if (noBtn) {
+        // 计算随机坐标，保持在窗口范围内
+        var x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        var y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+        
+        noBtn.style.position = 'fixed'; // 变成绝对定位才能跑
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+    }
+}
 
-// 3. 设置打字速度
+// 3. 情书内容与设置
+var loveLetter = "halo,我是史努比，可以问你在2月14号可以和我出去吗？我想看别人打鼓但没人陪我，但如果你有事情或者想拒绝我也可以的，seen我就好了，";
 var typingSpeed = 100;
 
 // 4. 打字机函数
@@ -31,30 +43,43 @@ function typeWriter(text, i, element, speed) {
             typeWriter(text, i + 1, element, speed);
         }, speed);
     } else {
-        // --- 打字结束后的逻辑 ---
-        setInterval(createHeart, 300);
+        // --- 打字结束后的惊喜 ---
+        setInterval(createHeart, 300); // 撒花
 
         var photo = document.getElementById('cat-photo');
-        if (photo) {
-            photo.style.display = 'block';
-        }
-        console.log("打字完成，开始撒花！");
-    } // <--- 这里是你之前漏掉的第一个大括号
-} // <--- 这里是你之前漏掉的第二个大括号
+        if (photo) { photo.style.display = 'block'; } // 现照片
 
-// 5. 确保页面加载完后再运行
+        var noBtn = document.getElementById('no-btn');
+        if (noBtn) {
+            noBtn.style.display = 'inline-block'; // 现拒绝按钮
+            noBtn.onmouseover = moveButton; // 绑定逃跑事件
+        }
+        console.log("打字完成，效果开启！");
+    }
+}
+
+// 5. 核心启动逻辑
 window.onload = function () {
     var btn = document.getElementById('start-btn');
+    var outputElement = document.getElementById('letter-output');
 
     if (btn) {
         btn.onclick = function () {
-            btn.style.display = 'none'; 
-            audio.play().catch(function(e) {
-                console.log("音频播放被拦截:", e);
-            }); 
+            btn.style.display = 'none'; // 藏按钮
 
-            var outputElement = document.getElementById('letter-output');
-            typeWriter(loveLetter, 0, outputElement, typingSpeed);
+            // 播放音乐
+            try {
+                var audio = new Audio('happy-bday.mp3'); 
+                audio.loop = true;
+                audio.play().catch(function(e) { console.log("播放拦截:", e); });
+            } catch (err) {
+                console.log("音频出错:", err);
+            }
+
+            // 启动打字机
+            if (outputElement) {
+                typeWriter(loveLetter, 0, outputElement, typingSpeed);
+            }
         };
     }
 };
